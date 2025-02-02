@@ -66,8 +66,4 @@ public class Mapa {
         treeMapa.pollFirstEntry();
         System.out.println("Después de eliminar el primer elemento: " + treeMapa);
     }
-
-    public static void main(String[] args) {
-        new Mapa();
-    }
 }
