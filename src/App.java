@@ -10,7 +10,6 @@ import models.Empleado;
 public class App {
     public static void main(String[] args) throws Exception {
 
-
         // Ejecuta el ejemplo de uso de HashMap con ejemplos sencillos
         runMapExample();
 
@@ -47,29 +46,27 @@ public class App {
     }
 
     private static void runEjercicios() {
-        Ejercicios ejercicios = new Ejercicios();
-        //anagram
-         System.out.println("\nPrueba de anagramas:");
-         System.out.println(Ejercicios.areAnagrams("List", "Silent"));  
-         System.out.println(Ejercicios.areAnagrams("Liste", "silet"));
-         System.out.println(Ejercicios.areAnagrams("hello", "bello"));
-         System.out.println(Ejercicios.areAnagrams("triangle", "integral"));
-
-       // sumatorioDedos
-       System.out.println("\nPrueba de sumatoriosDedos:");
-       int[] nums = { 9,2,3,6 };
-       int[] resultado = ejercicios.sumatoriaDeDos(nums, 5);
-       System.out.println("Índices para objetivo 5: " + Arrays.toString(resultado)); 
-       resultado = ejercicios.sumatoriaDeDos(nums, 10);
-       System.out.println("Índices para objetivo 10: " + Arrays.toString(resultado)); 
-    }
-}
-
-  
-          
-        
-        
+        System.out.println("Test Ejercicios");
     
-     
+        Ejercicios ejercicios = new Ejercicios();
+    
+        // Tests para areAnagrams()
+        System.out.println("\n[Test 1] Anagramas 'listen' y 'silent': " + 
+        Ejercicios.areAnagrams("listen", "silent"));  // Debe ser true
+        System.out.println("[Test 2] Anagramas 'hello' y 'bello': " + 
+        Ejercicios.areAnagrams("hello", "bello"));    // Debe ser false
+        System.out.println("[Test 3] Anagramas 'triangle' y 'integral': " + 
+        Ejercicios.areAnagrams("triangle", "integral")); // Debe ser true
 
-
+        // Tests para sumatoriaDeDos()
+        int[] nums = {9, 2, 3, 6};
+    
+        System.out.println("\n[Test 4] Sumatoria objetivo 5: " + 
+        Arrays.toString(ejercicios.sumatoriaDeDos(nums, 5)));  // [1, 2]
+        System.out.println("[Test 5] Sumatoria objetivo 10: " + 
+        ejercicios.sumatoriaDeDos(nums, 10));  // null
+        int[] otrosNums = {1, 3, 5, 7};
+         System.out.println("\n[Test 6] Sumatoria objetivo 8: " + 
+        Arrays.toString(ejercicios.sumatoriaDeDos(otrosNums, 8))); // [0, 3]
+}
+}

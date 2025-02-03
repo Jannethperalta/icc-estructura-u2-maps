@@ -1,8 +1,6 @@
 package controllers;
 
-import java.util.HashMap;
-import java.util.Map
-
+import java.util.Arrays;
 
 public class Ejercicios {
 
@@ -30,36 +28,25 @@ public class Ejercicios {
      * frecuencia.
      */
     public static boolean areAnagrams(String str1, String str2) {
-        if ((str1.length() != str2.length())) {
+        // Primera verificación: si son de diferente tamaño, no son anagramas
+        if (str1.length() != str2.length()) {
             return false;
-            
-        }Map<Character, Integer> charCountMaps = new HashMap<>();
-
-       
-        for (char c : str1.toCharArray()) {
-            charCountMaps.put(c, charCountMaps.getOrDefault(c, 0) + 1);
         }
-
-        // Restar ocurrencias de caracteres en str2
-        for (char c : str2.toCharArray()) {
-            if (!charCountMaps.containsKey(c)) {
-                return false;
-            }
-            charCountMaps.put(c, charCountMaps.get(c)-1);
-            if (charCountMaps.get(c) ==0) {
-                charCountMaps.remove(c);
-                
-            }
-            
-        }
-        return charCountMaps.isEmpty();
-
+        
+        // Convertimos a arrays de caracteres y ordenamos
+        char[] chars1 = str1.toCharArray();
+        char[] chars2 = str2.toCharArray();
+        
+        Arrays.sort(chars1);  // Ordenamos el primer array
+        Arrays.sort(chars2);  // Ordenamos el segundo array
+        
+        // Comparamos los arrays ordenados
+        return Arrays.equals(chars1, chars2);
     }
 
     /*
      * Dado un array de números enteros y un objetivo, retorna los índices de dos
-     * números para los que la suma de ambos
-     *  sea igual al objetivo.
+     * números para los que la suma de ambos sea igual al objetivo.
      *
      * Se asume que hay una sola solución
      *
@@ -73,20 +60,14 @@ public class Ejercicios {
      * Output: null
      */
     public int[] sumatoriaDeDos(int[] nums, int objetivo) {
-        Map<Integer,  Integer>  numMaps = new HashMap<>();
-
-                for (int i = 0; i < nums.length; i++) {
-                    int complemento = objetivo - nums[i];
-        
-                    if (numMaps.containsKey(complemento)) {
-                        return new int[]{numMaps.get(complemento), i}; 
-                    }
-        
-                    numMaps.put(nums[i], i);
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                // Comprobamos todas las combinaciones posibles
+                if (nums[i] + nums[j] == objetivo) {
+                    return new int[]{i, j};  
                 }
-                return null; 
-
             }
-
-
         }
+        return null;  // Si no encontramos ninguna pareja
+    }
+}
